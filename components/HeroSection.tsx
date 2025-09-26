@@ -9,36 +9,33 @@ export default function HeroSection() {
   return (
     <section className="container mx-auto px-4 py-16 md:py-24 lg:py-32">
       <div className="mx-auto max-w-[980px] text-center">
-        <Badge variant="secondary" className="mb-4">
-          <Zap className="mr-1 h-3 w-3" />
-          Now live on Solana Mainnet
+        
+        <Badge variant="secondary" className="mb-4 text-base px-2 py-1">
+          <Zap className="mr-1 h-4 w-4 text-green-500" />
+          Live on Solana Mainnet
         </Badge>
 
-        <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
-          The data factory{" "}
+        <h1 className="text-4xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
+
           <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
-            for Web3 teams
+             Solana-based  {" "}
           </span>
+          Crowdsourcing Data Annotation Platform
         </h1>
 
-        <p className="mx-auto mt-6 max-w-[750px] text-lg text-muted-foreground sm:text-xl">
-          LabelChain delivers innovative blockchain services and software to
-          operate, build, or scale your modern Solana data infrastructure with
-          enterprise-grade reliability.
+        <p className="mx-auto mt-6 max-w-[750px] text-lg text-gray-600 sm:text-xl">
+          Label datasets and earn Solana tokens. Organizations get quality data labels 
+          while contributors earn crypto for their work.
         </p>
 
         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
           <SignInButton mode="modal">
             <Button size="lg" className="h-12 px-8">
-              Start for free
+              Start Free Today 
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </SignInButton>
         </div>
-
-        <p className="mt-4 text-sm text-muted-foreground">
-          Free tier available. No credit card required.
-        </p>
       </div>
     </section>
   );

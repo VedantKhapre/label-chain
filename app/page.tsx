@@ -5,6 +5,10 @@ import { useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import BentoGrid from "@/components/BentoGrid";
+import FAQ from "@/components/FAQ";
+import Pricing from "@/components/Pricing";
+import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -15,6 +19,10 @@ export default function Home() {
 
       <Unauthenticated>
         <HeroSection />
+        <BentoGrid />
+        <Pricing />
+        <FAQ />
+        <Footer />
       </Unauthenticated>
 
       <Authenticated>
@@ -46,6 +54,7 @@ export default function Home() {
             </Card>
           </div>
         </div>
+        <Footer />
       </Authenticated>
     </div>
   );

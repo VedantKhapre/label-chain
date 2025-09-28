@@ -154,7 +154,7 @@ export default function Pricing() {
                   </div>
 
                   {/* Decorative elements */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-blue-50 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </CardContent>
               </Card>
             ))}           

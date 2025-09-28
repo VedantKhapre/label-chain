@@ -18,7 +18,7 @@ export default function BentoGrid() {
   return (
     <section
       id="features"
-      className="container mx-auto px-4 py-16 mb-16 bg-gray-100/80 border-1 border-black rounded-[3rem] pt-7"
+      className="container mx-auto px-4 py-16 mb-20 scroll-mt-20"
     >
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold mb-4">Why Choose LabelChain?</h2>
@@ -28,7 +28,6 @@ export default function BentoGrid() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-7xl mx-auto">
-
         <Card className="md:col-span-2 md:row-span-2 bg-gradient-to-br from-blue-500 to-purple-600 text-white border-0 overflow-hidden relative">
           <CardContent className="p-6 h-full flex flex-col justify-between">
             <div>

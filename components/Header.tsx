@@ -1,10 +1,11 @@
 "use client";
 
 import { Authenticated, Unauthenticated } from "convex/react";
-import { SignInButton, UserButton } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Blocks } from "lucide-react";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Header() {
   return (
@@ -43,6 +44,7 @@ export default function Header() {
           </a>
         </nav>
         <div className="flex items-center space-x-2 pr-2">
+          <ThemeToggle />
           <Authenticated>
             <UserButton />
             <Button variant="outline" size="sm">
@@ -50,12 +52,14 @@ export default function Header() {
             </Button>
           </Authenticated>
           <Unauthenticated>
-            <SignInButton mode="modal">
+            <Link href="/login">
               <Button size="sm">Log in</Button>
-            </SignInButton>
-            <Button variant="outline" size="sm">
-              Contact us
-            </Button>
+            </Link>
+            <Link href="/signup">
+              <Button variant="outline" size="sm">
+                Sign up
+              </Button>
+            </Link>
           </Unauthenticated>
         </div>
       </div>

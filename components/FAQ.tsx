@@ -42,7 +42,7 @@ export default function FAQ() {
           <HelpCircle className="h-8 w-8 text-blue-600" />
           <h2 className="text-3xl font-bold">Frequently Asked Questions</h2>
         </div>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-muted-foreground max-w-2xl mx-auto">
           Everything you need to know about earning with LabelChain
         </p>
       </div>
@@ -51,25 +51,25 @@ export default function FAQ() {
         {faqData.map((item, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-200 hover:shadow-md"
+            className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden transition-all duration-200 hover:shadow-md"
           >
             <button
               onClick={() => toggleItem(index)}
               className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none"
             >
               <div className="flex items-center gap-4">
-                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <HelpCircle className="h-4 w-4 text-gray-500" />
+                <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center flex-shrink-0">
+                  <HelpCircle className="h-4 w-4 text-muted-foreground" />
                 </div>
-                <span className="text-lg font-medium text-gray-900 pr-4">
+                <span className="text-lg font-medium text-foreground pr-4">
                   {item.question}
                 </span>
               </div>
               <div className="flex-shrink-0">
                 {openItems.includes(index) ? (
-                  <ChevronUp className="h-5 w-5 text-gray-400" />
+                  <ChevronUp className="h-5 w-5 text-muted-foreground" />
                 ) : (
-                  <ChevronDown className="h-5 w-5 text-gray-400" />
+                  <ChevronDown className="h-5 w-5 text-muted-foreground" />
                 )}
               </div>
             </button>
@@ -83,7 +83,9 @@ export default function FAQ() {
             >
               <div className="px-6 pb-6">
                 <div className="pl-12">
-                  <p className="text-gray-600 leading-relaxed">{item.answer}</p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {item.answer}
+                  </p>
                 </div>
               </div>
             </div>

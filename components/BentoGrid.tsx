@@ -22,7 +22,7 @@ export default function BentoGrid() {
     >
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold mb-4">Why Choose LabelChain?</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-muted-foreground max-w-2xl mx-auto">
           The future of data annotation powered by Solana blockchain technology
         </p>
       </div>
@@ -54,19 +54,19 @@ export default function BentoGrid() {
         </Card>
 
         {/* Stats cards */}
-        <Card className="md:col-span-1 bg-white hover:shadow-lg transition-shadow">
+        <Card className="md:col-span-1 bg-card hover:shadow-lg transition-shadow">
           <CardContent className="p-6 text-center">
             <Users className="h-8 w-8 mx-auto mb-3 text-blue-600" />
-            <div className="text-2xl font-bold text-gray-900">1.2K+</div>
-            <div className="text-sm text-gray-600">Active Labelers</div>
+            <div className="text-2xl font-bold text-foreground">1.2K+</div>
+            <div className="text-sm text-muted-foreground">Active Labelers</div>
           </CardContent>
         </Card>
 
-        <Card className="md:col-span-1 bg-white hover:shadow-lg transition-shadow">
+        <Card className="md:col-span-1 bg-card hover:shadow-lg transition-shadow">
           <CardContent className="p-6 text-center">
             <Database className="h-8 w-8 mx-auto mb-3 text-green-600" />
-            <div className="text-2xl font-bold text-gray-900">50M+</div>
-            <div className="text-sm text-gray-600">Labels Created</div>
+            <div className="text-2xl font-bold text-foreground">50M+</div>
+            <div className="text-sm text-muted-foreground">Labels Created</div>
           </CardContent>
         </Card>
 
@@ -84,24 +84,24 @@ export default function BentoGrid() {
         </Card>
 
         {/* Performance metrics */}
-        <Card className="md:col-span-1 bg-white hover:shadow-lg transition-shadow">
+        <Card className="md:col-span-1 bg-card hover:shadow-lg transition-shadow">
           <CardContent className="p-6 text-center">
             <TrendingUp className="h-8 w-8 mx-auto mb-3 text-orange-600" />
-            <div className="text-2xl font-bold text-gray-900">0.01s</div>
-            <div className="text-sm text-gray-600">Avg Response</div>
+            <div className="text-2xl font-bold text-foreground">0.01s</div>
+            <div className="text-sm text-muted-foreground">Avg Response</div>
           </CardContent>
         </Card>
 
-        <Card className="md:col-span-1 bg-white hover:shadow-lg transition-shadow">
+        <Card className="md:col-span-1 bg-card hover:shadow-lg transition-shadow">
           <CardContent className="p-6 text-center">
             <BarChart3 className="h-8 w-8 mx-auto mb-3 text-purple-600" />
-            <div className="text-2xl font-bold text-gray-900">24/7</div>
-            <div className="text-sm text-gray-600">Uptime</div>
+            <div className="text-2xl font-bold text-foreground">24/7</div>
+            <div className="text-sm text-muted-foreground">Uptime</div>
           </CardContent>
         </Card>
 
         {/* Feature highlights */}
-        <Card className="md:col-span-2 bg-white border-2 border-gray-100 hover:border-blue-200 transition-colors">
+        <Card className="md:col-span-2 bg-card border-2 border-border hover:border-blue-200 transition-colors">
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-lg">
               <Target className="h-5 w-5 text-blue-600" />
@@ -109,7 +109,7 @@ export default function BentoGrid() {
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
-            <p className="text-gray-600 text-sm mb-4">
+            <p className="text-muted-foreground text-sm mb-4">
               AI-powered task distribution matches your skills with the right
               projects for maximum earnings.
             </p>

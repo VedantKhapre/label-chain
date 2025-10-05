@@ -6,8 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Blocks } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useClerkAppearance } from "@/hooks/useClerkAppearance";
 
 export default function Header() {
+  const { clerkAppearance } = useClerkAppearance();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4">
@@ -45,10 +48,8 @@ export default function Header() {
         </nav>
         <div className="flex items-center space-x-2 pr-2">
           <Authenticated>
-            <UserButton />
-            <Button size="sm">
-              Dashboard
-            </Button>
+            <UserButton appearance={clerkAppearance} />
+            <Button size="sm">Dashboard</Button>
           </Authenticated>
           <Unauthenticated>
             <Link href="/login">

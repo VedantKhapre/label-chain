@@ -39,8 +39,8 @@ export default function RootLayout({
           <ClerkProvider
             signInUrl="/login"
             signUpUrl="/signup"
-            afterSignInUrl="/"
-            afterSignUpUrl="/"
+            afterSignInUrl="/onboard"
+            afterSignUpUrl="/onboard"
           >
             <ConvexClientProvider>{children}</ConvexClientProvider>
           </ClerkProvider>

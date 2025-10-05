@@ -44,10 +44,9 @@ export default function Header() {
           </a>
         </nav>
         <div className="flex items-center space-x-2 pr-2">
-          <ThemeToggle />
           <Authenticated>
             <UserButton />
-            <Button variant="outline" size="sm">
+            <Button size="sm">
               Dashboard
             </Button>
           </Authenticated>
@@ -61,6 +60,7 @@ export default function Header() {
               </Button>
             </Link>
           </Unauthenticated>
+          <ThemeToggle />
         </div>
       </div>
     </header>

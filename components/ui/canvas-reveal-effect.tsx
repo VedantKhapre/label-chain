@@ -24,7 +24,9 @@ export const CanvasRevealEffect = ({
   showGradient?: boolean;
 }) => {
   return (
-    <div className={cn("h-full relative bg-white w-full", containerClassName)}>
+    <div
+      className={cn("h-full relative bg-background w-full", containerClassName)}
+    >
       <div className="h-full w-full">
         <DotMatrix
           colors={colors ?? [[0, 255, 255]]}
@@ -42,7 +44,7 @@ export const CanvasRevealEffect = ({
         />
       </div>
       {showGradient && (
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-950 to-[84%]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background to-[84%]" />
       )}
     </div>
   );
@@ -285,9 +287,8 @@ const ShaderMaterial = ({
       fragmentShader: source,
       uniforms: getUniforms,
       glslVersion: THREE.GLSL3,
-      blending: THREE.CustomBlending,
-      blendSrc: THREE.SrcAlphaFactor,
-      blendDst: THREE.OneFactor,
+      blending: THREE.NormalBlending,
+      transparent: true,
     });
 
     return materialObject;

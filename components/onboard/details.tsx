@@ -49,15 +49,21 @@ export default function Details({ onNext }: DetailsProps) {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const isFormValid = () => {
+    return formData.name.trim() !== "" && date && isValidDate(date);
+  };
+
   const handleNext = () => {
-    onNext?.();
+    if (isFormValid()) {
+      onNext?.();
+    }
   };
 
   return (
     <div className="w-full max-w-md mx-auto space-y-6">
       {/* Title */}
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-white mb-1">
+        <h1 className="text-4xl font-bold text-foreground mb-1">
           Help us personalize your experience
         </h1>
       </div>
@@ -66,22 +72,22 @@ export default function Details({ onNext }: DetailsProps) {
       <div className="space-y-6">
         {/* Name Field */}
         <div className="space-y-2">
-          <Label htmlFor="name" className="text-white text-sm">
+          <Label htmlFor="name" className="text-foreground text-sm">
             Whats your name?
           </Label>
           <Input
             id="name"
             type="text"
-            placeholder="Willia"
+            placeholder="Vedant"
             value={formData.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
-            className="bg-transparent border-neutral-700 text-white placeholder:text-neutral-400 focus:border-white focus:ring-white rounded-lg h-12"
+            className="bg-transparent border-border text-foreground placeholder:text-muted-foreground focus:border-ring focus:ring-ring rounded-lg h-12"
           />
         </div>
 
         {/* Date of Birth */}
         <div className="space-y-2">
-          <Label htmlFor="date" className="text-white text-sm">
+          <Label htmlFor="date" className="text-foreground text-sm">
             Whats your date of birth?
           </Label>
           <div className="relative flex gap-2">
@@ -89,7 +95,7 @@ export default function Details({ onNext }: DetailsProps) {
               id="date"
               value={dateValue}
               placeholder="June 01, 2025"
-              className="bg-transparent border-neutral-700 text-white placeholder:text-neutral-400 focus:border-white focus:ring-white rounded-lg h-12 pr-10"
+              className="bg-transparent border-border text-foreground placeholder:text-muted-foreground focus:border-ring focus:ring-ring rounded-lg h-12 pr-10"
               onChange={(e) => {
                 const date = new Date(e.target.value);
                 setDateValue(e.target.value);
@@ -110,7 +116,7 @@ export default function Details({ onNext }: DetailsProps) {
                 <Button
                   id="date-picker"
                   variant="ghost"
-                  className="absolute top-1/2 right-2 size-6 -translate-y-1/2 text-neutral-400 hover:text-white"
+                  className="absolute top-1/2 right-2 size-6 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
                   <CalendarIcon className="size-3.5" />
                   <span className="sr-only">Select date</span>
@@ -144,7 +150,8 @@ export default function Details({ onNext }: DetailsProps) {
       <div className="flex justify-center pt-4">
         <Button
           onClick={handleNext}
-          className="bg-white text-black hover:bg-neutral-200 px-8 rounded-lg"
+          disabled={!isFormValid()}
+          className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary"
         >
           Next
         </Button>

@@ -25,10 +25,10 @@ export default function ConnectWallet({
   return (
     <div className="w-full max-w-5xl mx-auto p-6">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-2 text-white">
+        <h1 className="text-3xl font-bold mb-2 text-foreground">
           Connect Your Wallet
         </h1>
-        <p className="text-neutral-300 text-lg">
+        <p className="text-muted-foreground text-lg">
           Connect your Solana wallet to get started
         </p>
       </div>
@@ -40,14 +40,16 @@ export default function ConnectWallet({
               <Wallet className="w-12 h-12 text-purple-400" />
             </div>
             <div className="space-y-3">
-              <h3 className="text-2xl font-bold text-white">Solana Wallet</h3>
-              <p className="text-neutral-300 text-sm px-4">
+              <h3 className="text-2xl font-bold text-foreground">
+                Solana Wallet
+              </h3>
+              <p className="text-muted-foreground text-sm px-4">
                 We support Phantom, Solflare, and other popular wallets
               </p>
             </div>
             <Button
               size="lg"
-              className="bg-white text-black hover:bg-neutral-200 px-8 py-3 text-lg font-semibold rounded-lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold rounded-lg"
             >
               <Wallet className="w-5 h-5 mr-2" />
               Connect Wallet
@@ -61,14 +63,14 @@ export default function ConnectWallet({
         <Button
           variant="ghost"
           onClick={handlePrevious}
-          className="text-neutral-400 hover:text-white hover:bg-transparent px-8"
+          className="text-muted-foreground hover:text-foreground hover:bg-transparent px-8"
         >
           Back
         </Button>
 
         <Button
           onClick={handleNext}
-          className="bg-white text-black hover:bg-neutral-200 px-8 rounded-lg"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 rounded-lg"
         >
           Complete
         </Button>

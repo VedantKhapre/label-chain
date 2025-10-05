@@ -39,10 +39,10 @@ export default function AccountType({
   return (
     <div className="w-full max-w-5xl mx-auto p-6">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-2 text-white">
+        <h1 className="text-3xl font-bold mb-2 text-foreground">
           Choose your platform
         </h1>
-        <p className="text-neutral-300 text-lg">
+        <p className="text-muted-foreground text-lg">
           You cant Switch between platforms
         </p>
       </div>
@@ -61,9 +61,9 @@ export default function AccountType({
               <User className="w-12 h-12 text-blue-400" />
             </div>
             <div className="space-y-3">
-              <h3 className="text-2xl font-bold text-white">Individual</h3>
-              <p className="text-neutral-300 text-sm px-4">
-                For personal use and individual projects
+              <h3 className="text-2xl font-bold text-foreground">Individual</h3>
+              <p className="text-muted-foreground text-sm px-4">
+                Get rewarded instantly for quality data annotations
               </p>
             </div>
           </div>
@@ -82,9 +82,11 @@ export default function AccountType({
               <Building2 className="w-12 h-12 text-green-400" />
             </div>
             <div className="space-y-3">
-              <h3 className="text-2xl font-bold text-white">Organization</h3>
-              <p className="text-neutral-300 text-sm px-4">
-                For teams and businesses with collaborative needs
+              <h3 className="text-2xl font-bold text-foreground">
+                Organization
+              </h3>
+              <p className="text-muted-foreground text-sm px-4">
+                Organizations get quality data labels
               </p>
             </div>
           </div>
@@ -96,7 +98,7 @@ export default function AccountType({
         <Button
           variant="ghost"
           onClick={handlePrevious}
-          className="text-neutral-400 hover:text-white hover:bg-transparent px-8"
+          className="text-muted-foreground hover:text-foreground hover:bg-transparent px-8"
         >
           Back
         </Button>
@@ -104,7 +106,7 @@ export default function AccountType({
         <Button
           onClick={handleNext}
           disabled={!selected}
-          className="bg-white text-black hover:bg-neutral-200 px-8 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Next
         </Button>

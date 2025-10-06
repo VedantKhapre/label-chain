@@ -8,7 +8,7 @@ import { useTheme } from "next-themes";
 
 export const CardSpotlight = ({
   children,
-  radius = 350,
+  radius = 400,
   color,
   className,
   ...props

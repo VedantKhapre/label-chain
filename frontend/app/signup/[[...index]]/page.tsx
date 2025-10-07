@@ -1,7 +1,7 @@
 "use client";
 
 import { SignUp } from "@clerk/nextjs";
-import AuthNavbar from "@/components/AuthNavbar";
+import AuthNavbar from "@/components/layout/AuthNavbar";
 import { useClerkAppearance } from "@/hooks/useClerkAppearance";
 
 export default function SignUpPage() {

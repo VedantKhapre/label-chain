@@ -3,12 +3,12 @@
 import { Authenticated, Unauthenticated } from "convex/react";
 import { useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
-import Header from "@/components/Header";
-import HeroSection from "@/components/HeroSection";
-import BentoGrid from "@/components/BentoGrid";
-import FAQ from "@/components/FAQ";
-import Pricing from "@/components/Pricing";
-import Footer from "@/components/Footer";
+import Header from "@/components/layout/Header";
+import HeroSection from "@/components/landing/HeroSection";
+import BentoGrid from "@/components/landing/BentoGrid";
+import FAQ from "@/components/landing/FAQ";
+import Pricing from "@/components/landing/Pricing";
+import Footer from "@/components/layout/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 

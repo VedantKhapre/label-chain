@@ -4,6 +4,8 @@ import React from "react";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { Button } from "@/components/ui/button";
 import { Wallet } from "lucide-react";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 interface ConnectWalletProps {
   onNext?: () => void;
@@ -14,6 +16,8 @@ export default function ConnectWallet({
   onNext,
   onPrevious,
 }: ConnectWalletProps) {
+  const { connected, publicKey } = useWallet();
+
   const handleNext = () => {
     onNext?.();
   };
@@ -43,17 +47,22 @@ export default function ConnectWallet({
               <h3 className="text-2xl font-bold text-foreground">
                 Solana Wallet
               </h3>
-              <p className="text-muted-foreground text-sm px-4">
-                We support Phantom, Solflare, and other popular wallets
-              </p>
+              {connected && publicKey ? (
+                <div className="text-center space-y-2">
+                  <p className="text-green-500 font-semibold">
+                    ✓ Wallet Connected
+                  </p>
+                  <p className="text-muted-foreground text-xs px-4 font-mono">
+                    {`${publicKey.toString().slice(0, 4)}...${publicKey.toString().slice(-4)}`}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-muted-foreground text-sm px-4">
+                  We support Phantom, Solflare, and other popular wallets
+                </p>
+              )}
             </div>
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold rounded-lg"
-            >
-              <Wallet className="w-5 h-5 mr-2" />
-              Connect Wallet
-            </Button>
+            <WalletMultiButton className="!bg-primary !text-primary-foreground hover:!bg-primary/90 !px-8 !py-3 !text-lg !font-semibold !rounded-lg !border-0" />
           </div>
         </CardSpotlight>
       </div>
@@ -70,7 +79,8 @@ export default function ConnectWallet({
 
         <Button
           onClick={handleNext}
-          className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 rounded-lg"
+          disabled={!connected}
+          className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Complete
         </Button>

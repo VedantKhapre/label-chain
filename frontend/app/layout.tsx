@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import ConvexClientProvider from "../components/ConvexClientProvider";
-import { ThemeProvider } from "../components/ThemeProvider";
+import ConvexClientProvider from "../components/providers/ConvexClientProvider";
+import { ThemeProvider } from "../components/common/ThemeProvider";
+import { SolanaProvider } from "../components/providers/SolanaProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +43,9 @@ export default function RootLayout({
             afterSignInUrl="/onboard"
             afterSignUpUrl="/onboard"
           >
-            <ConvexClientProvider>{children}</ConvexClientProvider>
+            <SolanaProvider>
+              <ConvexClientProvider>{children}</ConvexClientProvider>
+            </SolanaProvider>
           </ClerkProvider>
         </ThemeProvider>
       </body>

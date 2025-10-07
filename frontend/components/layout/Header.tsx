@@ -1,7 +1,6 @@
 "use client";
 
-import { Authenticated, Unauthenticated } from "convex/react";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Blocks } from "lucide-react";
 import Link from "next/link";
@@ -10,6 +9,7 @@ import { useClerkAppearance } from "@/hooks/useClerkAppearance";
 
 export default function Header() {
   const { clerkAppearance } = useClerkAppearance();
+  const { isSignedIn } = useUser();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -47,20 +47,24 @@ export default function Header() {
           </a>
         </nav>
         <div className="flex items-center space-x-2 pr-2">
-          <Authenticated>
-            <UserButton appearance={clerkAppearance} />
-            <Button size="sm">Dashboard</Button>
-          </Authenticated>
-          <Unauthenticated>
+          {isSignedIn && <UserButton appearance={clerkAppearance} />}
+          {isSignedIn && (
+            <Link href="/onboard">
+              <Button size="sm">Onboarding</Button>
+            </Link>
+          )}
+          {!isSignedIn && (
             <Link href="/login">
               <Button size="sm">Log in</Button>
             </Link>
+          )}
+          {!isSignedIn && (
             <Link href="/signup">
               <Button variant="outline" size="sm">
                 Sign up
               </Button>
             </Link>
-          </Unauthenticated>
+          )}
           <ThemeToggle />
         </div>
       </div>

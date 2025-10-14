@@ -11,6 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useOnboard } from "@/contexts/OnboardContext";
 
 interface DetailsProps {
   onNext?: () => void;
@@ -36,25 +37,26 @@ function isValidDate(date: Date | undefined) {
 }
 
 export default function Details({ onNext }: DetailsProps) {
-  const [formData, setFormData] = React.useState({
-    name: "",
-  });
+  const { data, updateData } = useOnboard();
 
   const [open, setOpen] = React.useState(false);
-  const [date, setDate] = React.useState<Date | undefined>(undefined);
+  const [date, setDate] = React.useState<Date | undefined>(
+    data.dateOfBirth ? new Date(data.dateOfBirth) : undefined,
+  );
   const [month, setMonth] = React.useState<Date | undefined>(date);
-  const [dateValue, setDateValue] = React.useState("");
+  const [dateValue, setDateValue] = React.useState(data.dateOfBirth || "");
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    updateData(field as keyof typeof data, value);
   };
 
   const isFormValid = () => {
-    return formData.name.trim() !== "" && date && isValidDate(date);
+    return data.name.trim() !== "" && date && isValidDate(date);
   };
 
   const handleNext = () => {
-    if (isFormValid()) {
+    if (isFormValid() && date) {
+      updateData("dateOfBirth", date.toISOString());
       onNext?.();
     }
   };
@@ -79,7 +81,7 @@ export default function Details({ onNext }: DetailsProps) {
             id="name"
             type="text"
             placeholder="Vedant"
-            value={formData.name}
+            value={data.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
             className="bg-transparent border-border text-foreground placeholder:text-muted-foreground focus:border-ring focus:ring-ring rounded-lg h-12"
           />

@@ -1,30 +1,71 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { Button } from "@/components/ui/button";
-import { Wallet } from "lucide-react";
+import { Wallet, Loader2 } from "lucide-react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useOnboard } from "@/contexts/OnboardContext";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 interface ConnectWalletProps {
-  onNext?: () => void;
   onPrevious?: () => void;
 }
 
-export default function ConnectWallet({
-  onNext,
-  onPrevious,
-}: ConnectWalletProps) {
+export default function ConnectWallet({ onPrevious }: ConnectWalletProps) {
   const { connected, publicKey } = useWallet();
+  const { data, updateData } = useOnboard();
+  const createUser = useMutation(api.users.createUser);
+  const { user } = useUser();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleNext = () => {
-    onNext?.();
+  const handleNext = async () => {
+    if (!connected || !publicKey || !user || !data.accountType) return;
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      // Store user data in Convex
+      await createUser({
+        clerkId: user.id,
+        name: data.name,
+        dateOfBirth: data.dateOfBirth,
+        accountType: data.accountType,
+        walletAddress: publicKey.toString(),
+        email: user.emailAddresses?.[0]?.emailAddress,
+      });
+
+      // Redirect based on account type
+      if (data.accountType === "organization") {
+        router.push("/studio/organization");
+      } else {
+        router.push("/studio/user");
+      }
+    } catch (error) {
+      console.error("Failed to create user:", error);
+      setError("Failed to complete setup. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handlePrevious = () => {
     onPrevious?.();
   };
+
+  // Update wallet address when connected
+  React.useEffect(() => {
+    if (connected && publicKey) {
+      updateData("walletAddress", publicKey.toString());
+    }
+  }, [connected, publicKey]);
 
   return (
     <div className="w-full max-w-5xl mx-auto p-6">
@@ -61,6 +102,9 @@ export default function ConnectWallet({
                   We support Phantom, Solflare, and other popular wallets
                 </p>
               )}
+              {error && (
+                <p className="text-red-500 text-sm text-center mt-2">{error}</p>
+              )}
             </div>
             <WalletMultiButton className="!bg-primary !text-primary-foreground hover:!bg-primary/90 !px-8 !py-3 !text-lg !font-semibold !rounded-lg !border-0" />
           </div>
@@ -79,10 +123,17 @@ export default function ConnectWallet({
 
         <Button
           onClick={handleNext}
-          disabled={!connected}
+          disabled={!connected || !data.accountType || isLoading}
           className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Complete
+          {isLoading ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Setting up...
+            </>
+          ) : (
+            "Complete"
+          )}
         </Button>
       </div>
     </div>

@@ -1,31 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { Button } from "@/components/ui/button";
 import { User, Building2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useOnboard } from "@/contexts/OnboardContext";
 
 interface AccountTypeProps {
-  onSelect?: (type: "individual" | "organization") => void;
-  selectedType?: "individual" | "organization";
   onNext?: () => void;
   onPrevious?: () => void;
 }
 
-export default function AccountType({
-  onSelect,
-  selectedType,
-  onNext,
-  onPrevious,
-}: AccountTypeProps) {
-  const [selected, setSelected] = useState<
-    "individual" | "organization" | null
-  >(selectedType || null);
+export default function AccountType({ onNext, onPrevious }: AccountTypeProps) {
+  const { data, updateData } = useOnboard();
 
   const handleSelect = (type: "individual" | "organization") => {
-    setSelected(type);
-    onSelect?.(type);
+    updateData("accountType", type);
   };
 
   const handleNext = () => {
@@ -52,7 +43,7 @@ export default function AccountType({
         <CardSpotlight
           className={cn(
             "h-80 w-full cursor-pointer transition-all duration-300",
-            selected === "individual" ? "ring-2 ring-blue-500" : "",
+            data.accountType === "individual" ? "ring-2 ring-blue-500" : "",
           )}
           onClick={() => handleSelect("individual")}
         >
@@ -73,7 +64,7 @@ export default function AccountType({
         <CardSpotlight
           className={cn(
             "h-80 w-full cursor-pointer transition-all duration-300",
-            selected === "organization" ? "ring-2 ring-green-500" : "",
+            data.accountType === "organization" ? "ring-2 ring-green-500" : "",
           )}
           onClick={() => handleSelect("organization")}
         >
@@ -105,7 +96,7 @@ export default function AccountType({
 
         <Button
           onClick={handleNext}
-          disabled={!selected}
+          disabled={!data.accountType}
           className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Next

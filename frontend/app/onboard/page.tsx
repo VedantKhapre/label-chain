@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/common/ThemeToggle";
 import Details from "@/components/onboard/details";
 import AccountType from "@/components/onboard/accountType";
 import ConnectWallet from "@/components/onboard/connectWallet";
+import { OnboardProvider } from "@/contexts/OnboardContext";
 
 const steps = [
   { id: 1, component: Details, name: "Details" },
@@ -38,25 +39,27 @@ export default function OnboardPage() {
   const CurrentComponent = steps[currentStep - 1]?.component;
 
   return (
-    <div className="min-h-screen bg-background">
-      <BackgroundBeamsWithCollision className="min-h-screen flex flex-col relative">
-        {/* Theme Toggle in top right corner */}
-        <div className="absolute top-4 right-4 z-50">
-          <ThemeToggle />
-        </div>
+    <OnboardProvider>
+      <div className="min-h-screen bg-background">
+        <BackgroundBeamsWithCollision className="min-h-screen flex flex-col relative">
+          {/* Theme Toggle in top right corner */}
+          <div className="absolute top-4 right-4 z-50">
+            <ThemeToggle />
+          </div>
 
-        {/* Main Content with proper z-index */}
-        <div className="flex-1 flex items-center justify-center p-6 relative z-50">
-          {CurrentComponent && (
-            <div className="w-full relative z-50">
-              <CurrentComponent
-                onNext={handleNext}
-                onPrevious={handlePrevious}
-              />
-            </div>
-          )}
-        </div>
-      </BackgroundBeamsWithCollision>
-    </div>
+          {/* Main Content with proper z-index */}
+          <div className="flex-1 flex items-center justify-center p-6 relative z-50">
+            {CurrentComponent && (
+              <div className="w-full relative z-50">
+                <CurrentComponent
+                  onNext={handleNext}
+                  onPrevious={handlePrevious}
+                />
+              </div>
+            )}
+          </div>
+        </BackgroundBeamsWithCollision>
+      </div>
+    </OnboardProvider>
   );
 }

@@ -65,7 +65,7 @@ export default function ConnectWallet({ onPrevious }: ConnectWalletProps) {
     if (connected && publicKey) {
       updateData("walletAddress", publicKey.toString());
     }
-  }, [connected, publicKey]);
+  }, [connected, publicKey, updateData]);
 
   return (
     <div className="w-full max-w-5xl mx-auto p-6">
